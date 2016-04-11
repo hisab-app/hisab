@@ -1,0 +1,13 @@
+$bg-color:#ddd;
+$fg-color:#fff;
+body{
+    background-color:$bg-color;
+}
+.errorlist{
+    
+        li{
+            color:red;
+            list-style:none;
+        }
+    
+}

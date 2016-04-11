@@ -5,18 +5,22 @@
 		<title>Expense Manager</title>
 		<link href="{% static 'bootstrap/dist/css/bootstrap.css' %}" type="text/css" rel="stylesheet"/>
 		<link href="{% static 'font-awesome/css/font-awesome.css' %}" type="text/css" rel="stylesheet"/>
+		<link href="{% static 'css/main.css' %}" type="text/css" rel="stylesheet"/>
 		
 	</head>
 	<body>
-		<div class="container-fluid">
-			<div class="header container-fluid">
-			
+		<div class="body container">
+			<div class="header container">
+				{%block header%}
+				{%endblock%}
 			</div>
 			<div class="body container">
-				
+				{%block body%}
+				{%endblock%}
 			</div>
 			<div class="footer container-fluid">
-			
+				{%block footer%}
+				{%endblock%}
 			</div>
 		</div>
 	</body>

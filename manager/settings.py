@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
     'home',
 ]
 
@@ -82,6 +81,7 @@ WSGI_APPLICATION = 'manager.wsgi.application'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'components'),
+    os.path.join(BASE_DIR, 'static'),
 )
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -130,5 +130,5 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_base')
 STATIC_URL = '/static/'
