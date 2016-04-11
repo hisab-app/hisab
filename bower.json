@@ -1,0 +1,23 @@
+{
+  "name": "expense_manager",
+  "homepage": "https://github.com/zkhan93/expense_manager",
+  "authors": [
+    "zkhan93 <zkhan1093@gmail.com>"
+  ],
+  "description": "website to manage expenses",
+  "main": "bower",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "fontawesome#^4.5.0",
+    "jquery": "^2.2.3"
+  }
+}

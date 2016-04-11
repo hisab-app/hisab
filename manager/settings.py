@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djangobower',
+    
     'home',
 ]
 
@@ -55,10 +55,10 @@ MIDDLEWARE_CLASSES = [
 STATICFILES_FINDER=[
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
+    
 ]
 
-BOWER_COMPONENTS_ROOT=os.path.join(BASE_DIR,'components')
+
 
 ROOT_URLCONF = 'manager.urls'
 
@@ -80,7 +80,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'manager.wsgi.application'
 
-
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'components'),
+)
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
@@ -130,8 +132,3 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-BOWER_INSTALLED_APPS=(
-	'jquery',
-	'bootstrap',
-	'fontawesome',
-)
