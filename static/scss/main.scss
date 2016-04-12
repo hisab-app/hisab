@@ -4,10 +4,11 @@ body{
     background-color:$bg-color;
 }
 .errorlist{
-    
-        li{
-            color:red;
-            list-style:none;
-        }
-    
+    padding-left:0px;
+    li{
+        font-weight:bold;
+        font-size:smaller;
+        color:red;
+        list-style:none;
+    }
 }

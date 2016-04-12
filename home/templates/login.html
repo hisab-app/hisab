@@ -4,11 +4,16 @@
 {%endblock%}
 {% block body%}
 <div class="col-sm-6 col-sm-offset-3 login_form">
-    {% if user.authenticated %}
+    {% if user.is_authenticated %}
         <div class="alert alert-success">{{msg}}</div>
+        <form action="/logout/">
+            <div class="form-group">
+                <input class="btn btn-danger" type="submit" name="logout" value="Logout"/>
+            </div>
+        </form>
     {% else %}
         {% if msg %}
-            <div class="alert alert-danger">{{msg}}<br>{{form.errors}}</div>
+            <div class="alert alert-danger">{{msg}}</div>
         {%endif%}
     	<form action="/login/" method="post">
     		{% csrf_token %}
@@ -16,7 +21,11 @@
     			<div class="form-group">
     				<label>{{field.label}}</label>
     				{{field}}
-    				{{field.errors}}
+    				{% for error in field.errors %}
+    				    <ul class="errorlist">
+    				        <li><i class="fa fa-asterisk"></i> {{error}}</li>
+    				    </ul>
+    				{% endfor %}
     			</div>
     		{% endfor %}
     		<input type="submit" class="btn btn-success" value="Submit"/>

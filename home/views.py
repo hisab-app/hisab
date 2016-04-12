@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .forms import *
-from django.contrib.auth import login
+from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
 # Create your views here.
-def login(request):
+def userLogin(request):
 	data={}
 	if request.method=='GET':
 		data={'form':LoginForm()}
@@ -19,22 +19,27 @@ def login(request):
 				user=User.objects.get(email=email)
 			except User.DoesNotExist:
 				user=None
+			user=authenticate(username=user.username, password=password)
 			if user:
-				if user.check_password(password):
-					login(request,user)
-					result=True
-					msg='You are logged in'
-				else:
-					result=False
-					msg='Invalid password!!'
+				login(request,user)
+				result=True
+				msg='You are logged in'
+				print msg
 			else:
 				result=False
-				msg='You are not registered'
+				msg='Invalid email and password combination.'
 		else:
 			result=False
 			msg='Invalid values'
 		if not result:
 			data['form']=loginForm
-		data['result']=result
-		data['msg']=msg
-	return render(request,'login.html',data);
+			data['result']=result
+			data['msg']=msg
+			return render(request,'login.html',data);
+		else:
+			return render(request,'list_expense.html',data);
+
+def userLogout(request):
+	logout(request)
+	data={'form':LoginForm()}
+	return redirect('/login/')
