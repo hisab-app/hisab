@@ -5,8 +5,11 @@ from django.contrib.auth.models import User
 # Create your views here.
 def userLogin(request):
 	data={}
+	if request.user.is_authenticated():
+		redirect('')
 	if request.method=='GET':
 		data={'form':LoginForm()}
+		return render(request,'login.html',data)
 	elif request.method=='POST':
 		loginForm=LoginForm(request.POST)
 		result=False
@@ -37,9 +40,13 @@ def userLogin(request):
 			data['msg']=msg
 			return render(request,'login.html',data);
 		else:
-			return render(request,'list_expense.html',data);
+			return render(request,'home/list_expense.html',data);
 
 def userLogout(request):
 	logout(request)
 	data={'form':LoginForm()}
 	return redirect('/login/')
+
+@login_required
+def listExpenses(request):
+	return render('home/list_expense.html')
