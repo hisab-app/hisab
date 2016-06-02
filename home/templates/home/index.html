@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block header%}
+    <div class="jumbotron">
+	<div class="container">
+	<h1><i class="fa fa-stack"><i class="fa fa-stack-2x fa-circle"></i><i class="fa fa-inr fa-stack-1x color-primary"></i></i> Hisab</h1>
+		<p>Manage transaction between groups <i class="fa fa-users"></i></p>
+	</div>
+	</div>
+{%endblock%}
+{% block body%}
+
+<div class=""><i class="fa fa-quote-left fa-3x fa-border"></i> <b>Hisab</b> is a web application that allows you to manage transaction among group of people. You can create groups add people to it then statrt loging transactions, so that you can summarize all when required. <i class="fa fa-quote-right"></i></div>
+<hr/>
+<h3>About</h3>
+<div></div>
+
+<hr/>
+<h3>Login</h3>
+<div class="login_form">
+    {% if not user.is_authenticated %}
+        {% if msg %}
+            <div class="alert alert-danger">{{msg}}</div>
+        {%endif%}
+    	<form action="/login/" method="post">
+    		{% csrf_token %}
+    		{% for field in form %}
+    			<div class="form-group">
+    				<label>{{field.label}}</label>
+    				{{field}}
+    				{% for error in field.errors %}
+    				    <ul class="errorlist">
+    				        <li><i class="fa fa-asterisk"></i> {{error}}</li>
+    				    </ul>
+    				{% endfor %}
+    			</div>
+    		{% endfor %}
+    		<button type="submit" class="btn btn-success" value="Submit">Log in</button>
+    		<input type="reset" class="btn btn-danger"/>
+    	</form>
+	{%else%}
+		<p>sdfsdf</p>
+	{% endif %}
+
+</div>
+{%endblock%}

@@ -2,15 +2,16 @@
 <!Doctype html>
 <html>
 	<head>
-		<title>Expense Manager</title>
+		<title>Hisab</title>
 		<link href="{% static 'components/bootstrap/dist/css/bootstrap.css' %}" type="text/css" rel="stylesheet"/>
 		<link href="{% static 'components/font-awesome/css/font-awesome.css' %}" type="text/css" rel="stylesheet"/>
 		<link href="{% static 'css/main.css' %}" type="text/css" rel="stylesheet"/>
-		
+		<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Slabo+27px' rel='stylesheet' type='text/css'>
 	</head>
 	<body>
-		<div class="body container">
-			<div class="header container">
+		
+			<div class="header container-fluid">
 				{%block header%}
 				{%endblock%}
 			</div>
@@ -20,9 +21,10 @@
 			</div>
 			<div class="footer container-fluid">
 				{%block footer%}
+					<p>Override footer block to remove this message</p>
 				{%endblock%}
 			</div>
-		</div>
+		
 	</body>
 	<script src="{% static 'jquery/dist/jquery.min.js'%}"></script>
 	<script src="{% static 'bootstrap/dist/js/bootstrap.min.js'%}"></script>
