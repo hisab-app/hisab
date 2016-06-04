@@ -10,6 +10,3 @@ class AdminExpenseGroup(admin.ModelAdmin):
 		return ', '.join([m.username for m in obj.members.all()])
 admin.site.register(ExpenseItem,AdminExpenseItem)
 admin.site.register(ExpenseGroup,AdminExpenseGroup)
-
-admin.site.site_title = 'Hisab Administration'
-admin.site.site_header = 'Hisab Administration'
