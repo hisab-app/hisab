@@ -13,3 +13,6 @@ build/
 tests/report/
 static/components/
 .sass-cache/
+css/
+*.css
+*.css.map
