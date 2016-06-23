@@ -3,12 +3,12 @@ from .forms import *
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+from .models import *
 # Create your views here.
 def userLogin(request):
 	data={}
 	if request.user.is_authenticated():
-		redirect('/hisab/expenses')
+		return redirect('/hisab/expenses')
 	if request.method=='GET':
 		data={'form':LoginForm()}
 		return render(request,'hisab/index.html',data)
@@ -38,4 +38,10 @@ def userLogout(request):
 @login_required
 def listExpenses(request):
 	data={}
-	return render(request,'hisab/list_expense.html',data)
+	try:
+		data['expenses']=Item.objects.filter(author=request.user)
+		data['groups']=Batch.objects.filter(members__id__exact=request.user.id)
+		return render(request,'hisab/list_expense.html',data)
+	except Exception as e:
+		data['error']='Error occured! DEBUG INFO'+str(e)
+		return render(request,'hisab/error.html',data)

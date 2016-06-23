@@ -1,6 +1,67 @@
 {% extends "hisab/base.html" %}
-{% block header%}
-  <h3>Your expenses</h3>
-{% endblock %}
+
 {% block body %}
+  <div>
+    <div class="col-xs-2"><b>Group</b></div>
+    <div class="col-xs-1"><b>Sr. No</b></div>
+    <div class="col-xs-3"><b>Author</b></div>
+    <div class="col-xs-4"><b>Description</b></div>
+    <div class="col-xs-2"><b>Amount</b></div>
+  {%for group in groups %}
+  <div class="row">
+    <div class="col-xs-2"><b>{{group.name}}</b></div>
+    <div class="col-xs-10"></div>
+  </div>
+    {%for expense in group.item_set.all%}
+      <div class="row">
+        <div class="col-xs-1 col-xs-offset-2">{{forloop.counter}}</div>
+        <div class="col-xs-3">{{expense.author.username}}</div>
+        <div class="col-xs-4">{{expense.description}}</div>
+        <div class="col-xs-2">{{expense.amount}}</div>
+      </div>
+    {%endfor%}
+    <a class=" btn-sm btn btn-primary addItem">Add Item</a>
+  {% endfor %}
+  </div>
+
+
+  <!--Models-->
+  <!--AddItem Model-->
+  <div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="addItemModalLabel">Add Project</h4>
+      </div>
+      <div class="modal-body">
+        <form id="addItemForm" action="/hisab/item/add/" method="post">
+			{%csrf_token%}
+			<div class="form-group">
+				<label>Description</label>
+				<input name="description" class="form-control" type="text" placeholder="Description"/>
+			</div>
+			<div class="form-group">
+				<label>Amount</label>
+				<input name="amount" class="form-control" type="number" placeholder="Amount"/>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button class="btn btn-success" type="submit">Add Item</button>
+			</div>
+		</form>
+      </div>
+
+    </div>
+  </div>
+</div>
 {% endblock %}
+
+{%block script%}
+  <script>
+  $('.addItem').on('click',function(event){
+    $('#addItemModal').modal('show');
+  });
+  </script>
+{%endblock%}
